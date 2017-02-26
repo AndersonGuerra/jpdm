@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+{% include 'head_base.html' %}
+<body>
+	<div class="container">
+	{% include "logo.html" %}
+	<h1>Gerenciamento</h1>
+	<hr>
+		{% if dado %}
+			<a href="/" class="button u-full-width">Voltar ao início</a>
+			<table class="u-full-width">
+				{% if tipo == 'dino' %}
+					<thead>
+						<tr>
+							<th>Nome</th>
+							<th>Custo</th><th>Alimentação</th><th>Especie</th><th>Genero</th><th>Subordem</th>
+							<th>Ordem</th><th>Alterar</th>    <th>Excluir</th><th>Sobre</th>
+						</tr>
+					</thead>
+					<tbody>
+					{% for dino in dado %}
+						<tr>
+							<td>{{ dino.nome_br }}</td>
+							<td>{{ dino.custo_individual }}</td>
+							<td>{{ dino.f_alimentacao }}</td>
+							<td>{{ dino.f_especie }}</td>
+							<td>{{ dino.f_genero }}</td>
+							<td>{{ dino.f_ordem }}</td>
+							<td>{{ dino.f_subordem }}</td>
+							<form method="post" action="/alterar">
+								{% csrf_token %}
+								<td>
+									<input type="hidden" name="dino_id" value="{{ dino.id }}">
+									<input type="submit" name="dino_alterar" value="X">
+								</td>
+							</form>
+							<form method="post" action="/excluir">
+								{% csrf_token %}
+								<td>
+									<input type="hidden" name="dino_id" value="{{ dino.id }}">
+									<input type="submit" name="dino_excluir" value="X">
+								</td>
+							</form>
+							<form method="post" action="/sobre">
+								{% csrf_token %}
+								<td>
+									<input type="hidden" name="dino_id" value="{{ dino.id }}">
+									<input type="submit" name="dino_sobre" value="X">
+								</td>
+							</form>
+						</tr>
+					{% endfor %}
+					</tbody>
+				{% elif tipo == 'alimentacao' %}
+					<thead>
+						<tr>
+							<th>Tipo de alimentação</th><th>Editar</th><th>Excluir</th><th>Sobre</th>
+						</tr>
+					</thead>
+					{% for alimento in dado %}	
+						<tr>
+							<td>{{ alimento.tipo }}</td>
+							<form method="post" action="/alterar">
+								{% csrf_token %}
+								<td>
+									<input type="hidden" name="alimento_id" value="{{ alimento.id }}">
+									<input type="submit" name="alimento_alterar" value="X">
+								</td>
+							</form>
+							<form method="post" action="/excluir">
+								{% csrf_token %}
+								<td>
+									<input type="hidden" name="alimento_id" value="{{ alimento.id }}">
+									<input type="submit" name="alimento_excluir" value="X">
+								</td>
+							</form>
+							<form method="post" action="/sobre">
+								{% csrf_token %}
+								<td>
+									<input type="hidden" name="alimento_id" value="{{ alimento.id }}">
+									<input type="submit" name="alimento_sobre" value="X">
+								</td>
+							</form>
+						</tr>
+					{% endfor %}
+				{% elif tipo == 'especie' %}
+					<thead>
+						<tr>
+							<th>Espécies</th><th>Editar</th><th>Excluir</th><th>Sobre</th>
+						</tr>
+					</thead>
+					{% for especie in dado %}
+						<tr>
+							<td>{{ especie.f_genero }} {{ especie.nome }}</td>
+							<form method="post" action="/alterar">
+								{% csrf_token %}
+								<td>
+									<input type="hidden" name="especie_id" value="{{ especie.id }}">
+									<input type="submit" name="especie_alterar" value="X">
+								</td>
+							</form>
+							<form method="post" action="/excluir">
+								{% csrf_token %}
+								<td>
+									<input type="hidden" name="especie_id" value="{{ especie.id }}">
+									<input type="submit" name="especie_excluir" value="X">
+								</td>
+							</form>
+							<form method="post" action="/sobre">
+								{% csrf_token %}
+								<td>
+									<input type="hidden" name="especie_id" value="{{ especie.id }}">
+									<input type="submit" name="especie_sobre" value="X">
+								</td>
+							</form>
+						</tr>
+					{% endfor %}
+				{% elif tipo == 'genero' %}
+					<thead>
+						<tr>
+							<th>Gêneros</th><th>Editar</th><th>Excluir</th><th>Sobre</th>
+						</tr>
+					</thead>
+					{% for genero in dado %}
+						<tr>
+							<td>{{ genero.nome }}</td>
+							<form method="post" action="/alterar">
+								{% csrf_token %}
+								<td>
+									<input type="hidden" name="genero_id" value="{{ genero.id }}">
+									<input type="submit" name="genero_alterar" value="X">
+								</td>
+							</form>
+							<form method="post" action="/excluir">
+								{% csrf_token %}
+								<td>
+									<input type="hidden" name="genero_id" value="{{ genero.id }}">
+									<input type="submit" name="genero_excluir" value="X">
+								</td>
+							</form>
+							<form method="post" action="/sobre">
+								{% csrf_token %}
+								<td>
+									<input type="hidden" name="genero_id" value="{{ genero.id }}">
+									<input type="submit" name="genero_sobre" value="X">
+								</td>
+							</form>
+						</tr>
+					{% endfor %}
+				{% elif tipo == 'subordem' %}
+					<thead>
+						<tr>
+							<th>Subordem</th><th>Editar</th><th>Excluir</th><th>Sobre</th>
+						</tr>
+					</thead>
+					{% for subordem in dado %}
+						<tr>
+							<td>{{ subordem.nome }}</td>
+							<form method="post" action="/alterar">
+								{% csrf_token %}
+								<td>
+									<input type="hidden" name="subordem_id" value="{{ subordem.id }}">
+									<input type="submit" name="subordem_alterar" value="X">
+								</td>
+							</form>
+							<form method="post" action="/excluir">
+								{% csrf_token %}
+								<td>
+									<input type="hidden" name="subordem_id" value="{{ subordem.id }}">
+									<input type="submit" name="subordem_excluir" value="X">
+								</td>
+							</form>
+							<form method="post" action="/sobre">
+								{% csrf_token %}
+								<td>
+									<input type="hidden" name="subordem_id" value="{{ subordem.id }}">
+									<input type="submit" name="subordem_sobre" value="X">
+								</td>
+							</form>
+						</tr>
+					{% endfor %}
+				{% elif tipo == 'ordem' %}
+					<thead>
+						<tr>
+							<th>Ordem</th><th>Editar</th><th>Excluir</th><th>Sobre</th>
+						</tr>
+					</thead>
+					{% for ordem in dado %}
+						<tr>
+							<td>{{ ordem.nome }}</td>
+							<form method="post" action="/alterar">
+								{% csrf_token %}
+								<td>
+									<input type="hidden" name="ordem_id" value="{{ ordem.id }}">
+									<input type="submit" name="ordem_alterar" value="X">
+								</td>
+							</form>
+							<form method="post" action="/excluir">
+								{% csrf_token %}
+								<td>
+									<input type="hidden" name="ordem_id" value="{{ ordem.id }}">
+									<input type="submit" name="ordem_excluir" value="X">
+								</td>
+							</form>
+							<form method="post" action="/sobre">
+								{% csrf_token %}
+								<td>
+									<input type="hidden" name="ordem_id" value="{{ ordem.id }}">
+									<input type="submit" name="ordem_sobre" value="X">
+								</td>
+							</form>
+						</tr>
+					{% endfor %}
+				{% else %}
+					<p>{{dado}}</p>
+				{% endif %}
+			</table>
+		{% endif %}
+	</div>
+</body>
+</html>

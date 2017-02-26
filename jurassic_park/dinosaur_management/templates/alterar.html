@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+{% include 'head_base.html' %}
+<body>
+	<div class="container">
+		{% include "logo.html" %}
+		<h1>Alterar {{ tipo }}</h1>
+	    <hr>
+	    {% if msg %}
+	    	<p>{{ msg }}</p>
+	    	<a href="/" class="button u-full-width">Voltar</a>
+	    {% else %}
+		    <form action="" method="post" enctype='multipart/form-data'>
+		        {% csrf_token %}
+		        {{ formulario | linebreaks }}
+		        {% if tipo == 'dinossauro' %}
+		        	<input type="hidden" name="altera_dino" value="{{ id }}">
+		        {% elif tipo == 'alimentação' %}
+		        	<input type="hidden" name="altera_alimento" value="{{ id }}">
+		        {% elif tipo == 'espécie' %}
+		        	<input type="hidden" name="altera_especie" value="{{ id }}">
+		        {% elif tipo == 'gênero' %}
+		        	<input type="hidden" name="altera_genero" value="{{ id }}">
+		        {% elif tipo == 'subordem' %}
+		        	<input type="hidden" name="altera_subordem" value="{{ id }}">
+		        {% elif tipo == 'ordem' %}
+		        	<input type="hidden" name="altera_ordem" value="{{ id }}">
+		        {% endif %}
+		        <div class="row">
+		        	<a href="/" class="button six columns" >Voltar ao início</a>
+		        	<input type="submit" name="alterado" class="six columns" value="Alterar item">
+		        </div>
+		    </form>
+	    {% endif %}
+	</div>
+</body>
+</html>

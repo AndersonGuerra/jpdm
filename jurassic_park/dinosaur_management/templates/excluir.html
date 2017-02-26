@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+{% include "head_base.html" %}
+<body>
+	<div class="container">
+		{% include "logo.html" %}
+		<h1>Excluir {{ tipo }}</h1>
+		<hr>
+		{% if exclusao_ok %}
+			<p>Item excluido com sucesso</p>
+			<a href="/" class="button u-full-width">Clique aqui para voltar ao início</a>
+		{% else %}
+			{% if tipo == 'dinossauro' %}
+				<div class="row">
+					<div class="six columns">
+						<img src="{{ dados.imagem.url }}" class="u-full-width">
+					</div>
+					<div class="six columns">
+						<p>Nome: {{ dados.nome_br }}</p>
+						<p>Alimentação: {{ dados.f_alimentacao }}</p>
+						<p>Custo: {{ dados.custo_individual }}</p>
+						<p>Quantidade: {{ dados.quantidade }}</p>
+						<p>Especie: {{ dados.f_genero }} {{ dados.f_especie }}</p>
+						<p>Genero: {{ dados.f_genero }}</p>
+						<p>Subordem: {{ dados.f_subordem }}</p>
+						<p>Ordem: {{ dados.f_ordem }}</p>
+					</div>
+				</div>
+				<div class="row">
+					<a href="/" class="button six columns u-full-width">Voltar ao início.</a>
+					<form method='post' action="/excluir">
+						{% csrf_token %}
+						<input type="hidden" name="dino_id" value="{{ dados.pk }}">
+						<input type="submit" name="confirma_exclusao" class="six columns u-full-width" value="Excluir">
+					</form>
+				</div>
+			{% elif tipo == 'alimentação' %}
+				<p>Tipo: {{ dados.tipo }}</p>
+				<div class="row">
+					<a href="/" class="button six columns u-full-width">Voltar ao início.</a>
+					<form method='post' action="/excluir">
+						{% csrf_token %}
+						<input type="hidden" name="alimento_id" value="{{ dados.pk }}">
+						<input type="submit" name="confirma_exclusao" class="six columns u-full-width" value="Excluir">
+					</form>
+				</div>
+			{% elif tipo == 'espécie' %}
+				<p><strong>Nome:</strong> {{ dados.f_genero }} {{ dados.nome }}</p>
+				<p><strong>Descrição:</strong> {{ dados.descricao }}</p>
+				<div class="row">
+					<a href="/" class="button six columns u-full-width">Voltar ao início.</a>
+					<form method='post' action="/excluir">
+						{% csrf_token %}
+						<input type="hidden" name="especie_id" value="{{ dados.pk }}">
+						<input type="submit" name="confirma_exclusao" class="six columns u-full-width" value="Excluir">
+					</form>
+				</div>
+			{% elif tipo == 'gênero' %}
+				<p><strong>Nome:</strong> {{ dados.nome }}</p>
+				<p><strong>Descrição:</strong> {{ dados.descricao }}</p>
+				<div class="row">
+					<a href="/" class="button six columns u-full-width">Voltar ao início.</a>
+					<form method='post' action="/excluir">
+						{% csrf_token %}
+						<input type="hidden" name="genero_id" value="{{ dados.pk }}">
+						<input type="submit" name="confirma_exclusao" class="six columns u-full-width" value="Excluir">
+					</form>
+				</div>
+			{% elif tipo == 'subordem' %}
+				<p><strong>Nome:</strong> {{ dados.nome }}</p>
+				<p><strong>Descrição:</strong> {{ dados.descricao }}</p>
+				<div class="row">
+					<a href="/" class="button six columns u-full-width">Voltar ao início.</a>
+					<form method='post' action="/excluir">
+						{% csrf_token %}
+						<input type="hidden" name="subordem_id" value="{{ dados.pk }}">
+						<input type="submit" name="confirma_exclusao" class="six columns u-full-width" value="Excluir">
+					</form>
+				</div>
+			{% elif tipo == 'ordem' %}
+				<p><strong>Nome:</strong> {{ dados.nome }}</p>
+				<p><strong>Descrição:</strong> {{ dados.descricao }}</p>
+				<div class="row">
+					<a href="/" class="button six columns u-full-width">Voltar ao início.</a>
+					<form method='post' action="/excluir">
+						{% csrf_token %}
+						<input type="hidden" name="ordem_id" value="{{ dados.pk }}">
+						<input type="submit" name="confirma_exclusao" class="six columns u-full-width" value="Excluir">
+					</form>
+				</div>
+			{% else %}
+				<p>{{ msg }}</p>
+				<a href="/" class="button u-full-width">Voltar ao início.</a>
+			{% endif %}
+		{% endif %}		
+	</div>
+</body>
+</html>

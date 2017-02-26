@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+{% include 'head_base.html' %}
+<body>
+	<div class="container">
+		{% include "logo.html" %}
+		<h1>Cadastrar {{formulario.escondido.value}}</h1>
+	    <hr>
+	    {% if formulario %}
+	    	<form action="" method="post" enctype='multipart/form-data'>
+		        {% csrf_token %}
+		        {{ formulario | linebreaks }}
+		        <div class="row">
+		        	<a href="/" class="button six columns">Voltar ao início</a>
+		        	<input type="submit" value="Cadastrar" class="six columns" name="{{ formulario.escondido.value }}">
+		        </div>
+		    </form>
+	    {% elif cadastrado %}
+	    	<p>Item cadastrado com sucesso</p>
+	    	<a class="button u-full-width" href="/">Clique aqui para voltar ao início</a>
+	    {% else %}
+	    	<p>Você veio por um caminho inesperado! <a href="/">Clique aqui para voltar ao início</a></p>
+	    {% endif %}
+	</div>
+</body>
+</html>

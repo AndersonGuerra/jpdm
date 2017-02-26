@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Listar Dinossauros</title>
+</head>
+<body>
+    {% load static %}
+    {% for dino in dinos %}
+        <p>{{ dino.nome_br }}</p>
+        {% if dino.imagem %}
+        <img src="{{ dino.imagem.url }}" alt="lol" >
+        {% endif %}
+        <p>{{ MEDIA_URL }} {{ dino.imagem }}</p>
+    {% endfor %}
+</body>
+</html>

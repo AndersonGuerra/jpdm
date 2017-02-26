@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+{% include "head_base.html" %}
+<body>
+    <div class="container">
+        {% include "logo.html" %}
+        <h1>Bem-vindo ao Dinosaur Management.</h1>
+        <p>Escolha o que deseja fazer</p>
+        <hr>
+        <p>Cadastros</p>
+        <form action="/cadastro" method="post">
+            {% csrf_token %}
+            <div class="row">
+                <input type="submit" value="Cadastrar Dinossauro" name="cadastro" class="u-full-width four columns">
+                <input type="submit" value="Cadastrar Alimentação" name="cadastro" class="u-full-width four columns">
+                <input type="submit" value="Cadastrar Ordem" name="cadastro" class="u-full-width four columns">
+            </div>
+            <div class="row">
+                <input type="submit" value="Cadastrar Subordem" name="cadastro" class="u-full-width four columns">
+                <input type="submit" value="Cadastrar Gênero" name="cadastro" class="u-full-width four columns">
+                <input type="submit" value="Cadastrar Espécie" name="cadastro" class="u-full-width four columns">
+            </div>
+        </form>
+
+        <p>Gerenciamento</p>
+        <form action="/gerenciar" method="get">
+            <div class="row">
+                <input type="submit" value="Gerenciar Dinossauro" name="gerenciar" class="u-full-width four columns">
+                <input type="submit" value="Gerenciar Alimentação" name="gerenciar" class="u-full-width four columns">
+                <input type="submit" value="Gerenciar Ordem" name="gerenciar" class="u-full-width four columns">
+            </div>
+            <div class="row">
+                <input type="submit" value="Gerenciar Subordem" name="gerenciar" class="u-full-width four columns">
+                <input type="submit" value="Gerenciar Gênero" name="gerenciar" class="u-full-width four columns">
+                <input type="submit" value="Gerenciar Espécie" name="gerenciar" class="u-full-width four columns">
+            </div>
+        </form>
+    </div>
+</body>
+</html>

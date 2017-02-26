@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+{% include "head_base.html" %}
+<body>
+	<div class="container">
+		{% include "logo.html" %}
+		<h1>Sobre {{ tipo }}</h1>
+		<hr>
+		{% if erro %}
+			<p>Nenhum item selecionado</p>
+		{% else %}
+			{% if tipo == 'dinossauro' %}
+				<div class="row">
+					<div class="six columns">
+						<img src="{{ dados.imagem.url }}" class="u-full-width">
+					</div>
+					<div class="u-full-width">
+						<p>Nome: {{ dados.nome_br }}</p>
+						<p>Alimentação: {{ dados.f_alimentacao }}</p>
+						<p>Custo: {{ dados.custo_individual }}</p>
+						<p>Quantidade: {{ dados.quantidade }}</p>
+						<p>Especie: {{ dados.f_genero }} {{ dados.f_especie }}. {{ dados.f_especie.descricao }}</p>
+					</div>
+				</div>
+				<div class="row">
+					<p>Genero: {{ dados.f_genero }}. {{ dados.f_genero.descricao }}</p>
+					<p>Subordem: {{ dados.f_subordem }}. {{ dados.f_subordem.descricao }}</p>
+					<p>Ordem: {{ dados.f_ordem }}. {{ dados.f_ordem.descricao }}</p>
+				</div>
+			{% elif tipo == 'alimentação' %}
+				<p>Tipo: {{ dados.tipo }}</p>
+			{% elif tipo == 'espécie' %}
+				<p><strong>Nome:</strong> {{ dados.f_genero }} {{ dados.nome }}</p>
+				<p><strong>Descrição:</strong> {{ dados.descricao }}</p>
+			{% elif tipo == 'gênero' %}
+				<p><strong>Nome:</strong> {{ dados.nome }}</p>
+				<p><strong>Descrição:</strong> {{ dados.descricao }}</p>
+			{% elif tipo == 'subordem' %}
+				<p><strong>Nome:</strong> {{ dados.nome }}</p>
+				<p><strong>Descrição:</strong> {{ dados.descricao }}</p>
+			{% elif tipo == 'ordem' %}
+				<p><strong>Nome:</strong> {{ dados.nome }}</p>
+				<p><strong>Descrição:</strong> {{ dados.descricao }}</p>
+			{% else %}
+				<p>Nenhum item selecionado para ver detalhadamente.</p>
+				<a href="/" class="button u-full-width">Voltar ao início.</a>
+			{% endif %}
+		{% endif %}
+		<a href="/" class="button u-full-width">Voltar ao início</a
+	</div>
+</body>
+</html>
